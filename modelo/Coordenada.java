@@ -1,27 +1,14 @@
 package modelo;
 
-import javax.crypto.SecretKeyFactorySpi;
-
 public class Coordenada {
 
-    //---------------
-    // Atributos 
-    //---------------
     private double posx;
     private double posy;
 
-    //---------------
-    // Metodos 
-    //---------------
-
-    //---------------
-    // Constructor
-    //---------------
     public Coordenada(double posx, double posy)
     { 
         this.posx = posx;
         this.posy = posy;
-
     }
     
     public double getPosx() {
@@ -42,37 +29,22 @@ public class Coordenada {
 
     public String toString()
     {
-        return "La cordenada es: "+posx+","+posy;
+        return "La coordenada es: " + posx + ", " + posy;
     }
-
-    /*
-     * //construir con parametros string dd/mm/aaaa
-    public Fecha(String s)
-    {
-        //busquemos la primera ocurrencia de "/"
-        int pos1 = s.indexOf("/");
-
-        //busquemos la ultima ocurrencia de "/"
-        int pos2 = s.lastIndexOf("/");
-
-        //extraemos el dia 
-        String sDia = s.substring(0, pos1);
-        dia = Integer.parseInt(sDia);
-
-        //extraemos el mes
-        String sMes = s.substring(pos1 + 1, pos2);
-        mes = Integer.parseInt(sMes);
-
-        //extraemos el año
-        String sAnio = s.substring(pos2 + 1);
-        anio = Integer.parseInt(sAnio);
-    }
-     */
 
     public boolean equals(Object o)
     {
-        Coordenada otra = (Coordenada)o;
-        return (posx==otra.posx) && (posy==otra.posy);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Coordenada otra = (Coordenada) o;
+
+        return Double.compare(otra.posx, posx) == 0 && Double.compare(otra.posy, posy) == 0;
     }
-    
+
+    public void calcularDistancia(double x, double y)
+    {
+        double distancia = Math.sqrt(Math.pow((this.posx - x), 2) + Math.pow((this.posy - y), 2));
+        System.out.println("La distancia entre las coordenadas " + toString() + " y (" + x + "," + y + ") es " + distancia);
+    }
 }
